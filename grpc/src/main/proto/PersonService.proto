@@ -1,0 +1,25 @@
+syntax = "proto3";
+package com.example.grpc;
+
+message PersonReq{
+  int64 id = 1;
+}
+message PersonsReq{
+  int32 orgId = 1;
+}
+message PersonAllRes{
+  repeated Person persons = 1;
+}
+
+message Person{
+  int64 id = 1;
+  string firstname = 2;
+  string lastname = 3;
+  int32 age = 4;
+  int64 orgId = 5;
+}
+
+service PersonService{
+  rpc getPersons(PersonsReq) returns (PersonAllRes);
+  rpc getPerson(PersonReq) returns (Person);
+}
